@@ -1,14 +1,24 @@
 import { AppPage } from './app.po';
 
-describe('dn-d-tracking App', () => {
+describe('dnd-tracking App', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display Top Items', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getText('h3')).toEqual('Top Items');
+  });
+
+  it('should display My itemss', () => {
+    page.navigateTo('/items');
+    expect(page.getText('h2')).toEqual('My items');
+  });
+
+  it('should display item name', () => {
+    page.navigateTo('/items');
+    expect(page.getText('label')).toEqual('item name:');
   });
 });

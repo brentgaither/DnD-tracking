@@ -12,7 +12,7 @@ describe('dnd-tracking App', () => {
     expect(page.getText('h3')).toEqual('Top Items');
   });
 
-  it('should display My itemss', () => {
+  it('should display My items', () => {
     page.navigateTo('/items');
     expect(page.getText('h2')).toEqual('My items');
   });

@@ -6,15 +6,15 @@
     <label>name:
       <input class="form-control" [(ngModel)]="item.name" placeholder="name"/>
     </label>
-    <label>description:
-      <input class="form-control" [(ngModel)]="item.description" placeholder="item description"/>
-    </label>
     <label>weight:
       <input class="form-control" [(ngModel)]="item.weight" placeholder="lbs"/>
     </label>
     <label>quantity:
       <input class="form-control" [(ngModel)]="item.quantity" placeholder="#"/>
     </label>
+    <label>description:
+        <textarea type="textarea" class="form-control" [(ngModel)]="item.description" placeholder="item description"></textarea>
+      </label>
   </div>
 <button class="btn-success" (click)="save()">save</button>
 </div>

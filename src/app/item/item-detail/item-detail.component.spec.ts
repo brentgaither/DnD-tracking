@@ -6,7 +6,6 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { ItemDetailComponent } from './item-detail.component';
 import { ItemService } from '../shared/item.service';
-import { MockHttpClient } from '../../testing/mock-http-client';
 
 
 describe('ItemDetailComponent', () => {
@@ -14,14 +13,15 @@ describe('ItemDetailComponent', () => {
   let fixture: ComponentFixture<ItemDetailComponent>;
 
   beforeEach(async(() => {
+    const itemServiceStub = {
+      getItems() {}
+    };
     TestBed.configureTestingModule({
       imports: [ FormsModule, RouterTestingModule ],
       declarations: [ ItemDetailComponent ],
       providers: [
-        ItemService,
-        {provide: HttpClient, UserClass: MockHttpClient}
-      ],
-      schemas: [NO_ERRORS_SCHEMA]
+        {provide: ItemService, UserClass: itemServiceStub}
+      ]
     })
     .compileComponents();
   }));

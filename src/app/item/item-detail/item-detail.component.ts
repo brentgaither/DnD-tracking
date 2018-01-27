@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+
 import { Item } from '../shared/item.model';
 import { ItemService } from '../shared/item.service';
+
 
 
 @Component({
@@ -20,6 +22,7 @@ export class ItemDetailComponent implements OnInit {
   ) { }
 
   @Input() item: Item;
+  @Output() saveItem = new EventEmitter<boolean>();
 
   ngOnInit() {
   }
@@ -31,6 +34,7 @@ export class ItemDetailComponent implements OnInit {
 
   save(): void {
      this.itemService.updateItem(this.item);
+     this.saveItem.emit(true);
    }
 
    goBack(): void {

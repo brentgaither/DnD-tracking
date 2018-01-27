@@ -15,12 +15,13 @@
       </ul>
     </div>
     <div class="p-2">
+      <h4>{{weight}} lbs</h4>
       <div class="form-control">
           <label class="form-control-label">item name: <input #itemName /></label>
           <button class="btn btn-success" (click)="add(itemName.value); itemName.value=''">
             add</button>
       </div>
-      <app-item-detail [item]="selectedItem"></app-item-detail>
+      <app-item-detail [item]="selectedItem" (saveItem)="saveItem($event)"></app-item-detail>
     </div>
   </div>
 </div>

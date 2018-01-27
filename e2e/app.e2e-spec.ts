@@ -21,4 +21,9 @@ describe('dnd-tracking App', () => {
     page.navigateTo('/items');
     expect(page.getText('label')).toEqual('item name:');
   });
+
+  it('should display lbs', () => {
+    page.navigateTo('/items');
+    expect(page.getText('h4')).toEqual('18 lbs'); // conditional on mock data
+  });
 });

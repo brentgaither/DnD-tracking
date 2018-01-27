@@ -31,7 +31,7 @@ export class ItemService {
       catchError(this.handleError<Item>('addItem'))
     );
   }
-  updateItem (item: Item): Observable<any> {
+  updateItem (item: Item): Observable<Item> {
     return this.http.put(this.itemsUrl, item).pipe(
       catchError(this.handleError<any>('updateItem'))
     );

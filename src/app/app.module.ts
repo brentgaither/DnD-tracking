@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ItemModule } from './item/item.module';
+import { WalletModule } from './wallet/wallet.module';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -20,12 +22,13 @@ import { ItemModule } from './item/item.module';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-    ),
-    ItemModule
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   InMemoryDataService, { dataEncapsulation: false }
+    // ),
+    ItemModule,
+    WalletModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

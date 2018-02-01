@@ -3,7 +3,7 @@
     <h2>My items</h2>
   </div>
     <div class="d-flex flex-row">
-      <div class="p-2">
+      <div class="col-3">
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let item of items"
           [class.bg-info]="item === selectedItem"
@@ -14,9 +14,9 @@
         </li>
       </ul>
     </div>
-    <div class="p-2">
+    <div class="col-9">
       <h4>{{weight}} lbs</h4>
-      <div class="form-control">
+      <div class="form-group">
           <label class="form-control-label">item name: <input #itemName /></label>
           <button class="btn btn-success" (click)="add(itemName.value); itemName.value=''">
             add</button>

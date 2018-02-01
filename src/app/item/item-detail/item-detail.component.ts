@@ -5,8 +5,6 @@ import { Location } from '@angular/common';
 import { Item } from '../shared/item.model';
 import { ItemService } from '../shared/item.service';
 
-
-
 @Component({
   selector: 'app-item-detail',
   templateUrl: './item-detail.component.html',
@@ -33,7 +31,8 @@ export class ItemDetailComponent implements OnInit {
   }
 
   save(): void {
-     this.itemService.updateItem(this.item);
+     this.itemService.updateItem(this.item)
+      .subscribe();
      this.saveItem.emit(true);
    }
 

@@ -1,0 +1,16 @@
+<div class="container" *ngIf="wallet">
+  <app-wallet [wallet]="wallet"></app-wallet>
+  <div class="form-group">
+    <label>Gold:
+      <input type="number" class="form-control" [(ngModel)]="wallet.gold"/>
+    </label>
+    <label>Silver:
+      <input type="number" class="form-control" [(ngModel)]="wallet.silver"/>
+    </label>
+    <label>Copper:
+      <input type="number" class="form-control" [(ngModel)]="wallet.copper"/>
+    </label>
+  </div>
+  <button class="btn btn-success" (click)="save();">save</button>
+</div>
+  

@@ -1,21 +1,12 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import * as auth0 from 'auth0-js';
 import { AUTH_CONFIG } from './auth-config';
 import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
-  // Create Auth0 web auth instance
-  auth0 = new auth0.WebAuth({
-    clientID: AUTH_CONFIG.CLIENT_ID,
-    domain: AUTH_CONFIG.CLIENT_DOMAIN,
-    responseType: 'token id_token',
-    redirectUri: AUTH_CONFIG.REDIRECT,
-    audience: AUTH_CONFIG.AUDIENCE,
-    scope: AUTH_CONFIG.SCOPE
-  });
-  userProfile: any;
+
+  token: any;
 
   // Create a stream of logged in status to communicate throughout app
   loggedIn: boolean;
@@ -24,8 +15,8 @@ export class AuthService {
   constructor(private router: Router) {
     // If authenticated, set local profile property and update login status subject
     // If token is expired, log out to clear any data from localStorage
-    if (this.authenticated) {
-      this.userProfile = JSON.parse(localStorage.getItem('profile'));
+    if (this.isAuthenticated()) {
+      this.token = JSON.parse(localStorage.getItem('access_token'));
       this.setLoggedIn(true);
     } else {
       this.logout();
@@ -39,55 +30,45 @@ export class AuthService {
   }
 
   login() {
-    // Auth0 authorize request
-    this.auth0.authorize();
+    // Send the user to the authenticaition server
+  //  window.location.href('127.0.0.1:8000/login');
   }
 
-  handleAuth() {
-    // When Auth0 hash parsed, get profile
-    this.auth0.parseHash(window.location.hash, (err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        window.location.hash = '';
-        this._getProfile(authResult);
-      } else if (err) {
-        console.error(`Error: ${err.error}`);
-      }
-      this.router.navigate(['/']);
-    });
+  public handleAuthentication(): void {
+    // this.auth0.parseHash((err, authResult) => {
+    //   if (authResult && authResult.accessToken && authResult.idToken) {
+    //     window.location.hash = '';
+    //     this.setSession(authResult);
+    //     this.router.navigate(['/']);
+    //   } else if (err) {
+    //     this.router.navigate(['/']);
+    //     console.log(err);
+    //   }
+    // });
   }
 
-  private _getProfile(authResult) {
-    // Use access token to retrieve user's profile and set session
-    this.auth0.client.userInfo(authResult.accessToken, (err, profile) => {
-      this._setSession(authResult, profile);
-    });
-  }
-
-  private _setSession(authResult, profile) {
-    const expTime = authResult.expiresIn * 1000 + Date.now();
-    // Save session data and update login status subject
-    localStorage.setItem('token', authResult.accessToken);
+  private setSession(authResult): void {
+    // Set the time that the Access Token will expire at
+    const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+    localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem('profile', JSON.stringify(profile));
-    localStorage.setItem('expires_at', JSON.stringify(expTime));
-    this.userProfile = profile;
-    this.setLoggedIn(true);
+    localStorage.setItem('expires_at', expiresAt);
   }
 
-  logout() {
-    // Remove tokens and profile and update login status subject
-    localStorage.removeItem('token');
+  public logout(): void {
+    // Remove tokens and expiry time from localStorage
+    localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
-    localStorage.removeItem('profile');
     localStorage.removeItem('expires_at');
-    this.userProfile = undefined;
-    this.setLoggedIn(false);
+    // Go back to the home route
+    this.router.navigate(['/']);
   }
 
-  get authenticated(): boolean {
-    // Check if current date is greater than expiration
-    const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-    return Date.now() < expiresAt;
+  public isAuthenticated(): boolean {
+    // Check whether the current time is past the
+    // Access Token's expiry time
+    return true;
+    // const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+    // return new Date().getTime() < expiresAt;
   }
-
 }

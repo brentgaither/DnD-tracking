@@ -8,7 +8,7 @@
         <li class="list-group-item" *ngFor="let item of items"
           [class.bg-info]="item === selectedItem"
           (click)="onSelect(item)">
-          <span class="badge">({{item.quantity}})</span> {{item.name}}
+          <span class="badge badge-primary badge-pill">({{item.quantity}})</span> {{item.name}}
           <button class="btn btn-danger float-right" title="delete"
         (click)="delete(item)">x</button>
         </li>

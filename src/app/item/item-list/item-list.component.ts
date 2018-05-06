@@ -27,7 +27,7 @@ export class ItemListComponent implements OnInit {
   }
 
   calculateWeight(): void {
-    this.weight = this.items.reduce((sum, item) => sum + (item.weight * item.quantity), 0);
+    this.weight = this.items.reduce((sum, item) => sum + (item.weight * (item.quantity ? item.quantity : 0)), 0);
   }
 
   getItems(): void {
@@ -42,9 +42,10 @@ export class ItemListComponent implements OnInit {
   add(name: string): void {
     name = name.trim();
     if (!name) { return; }
-    this.itemService.addItem({ name: name, weight: 0, quantity: 0 } as Item)
-      .subscribe(item => {
-        this.items.push(item); this.calculateWeight();
+    const item = { name: name, weight: 0, quantity: 0, description: 'add a description' } as Item;
+    this.itemService.addItem(item)
+      .subscribe(newItem => {
+        this.items.push(newItem); this.calculateWeight();
       });
   }
 

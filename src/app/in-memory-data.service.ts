@@ -14,6 +14,11 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 19, name: 'Ink', description: 'Everyone needs to write', weight: .25, quantity: 1  },
       { id: 20, name: 'Ladder', description: 'Its probably tall enough', weight: 5, quantity: 1  }
     ];
-    return {items};
+    const wallets = [
+      { id: 1, gold: 10, silver: 5, copper: 4},
+      { id: 2, gold: 10, silver: 5, copper: 4},
+      { id: 3, gold: 10, silver: 5, copper: 4},
+    ];
+    return {items, wallets};
   }
 }

@@ -1,30 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { catchError, map, tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
-
 import { AUTH_CONFIG } from './auth-config';
-import { Authorize } from './authorize.model';
-
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
-  // Create Auth0 web auth instance
-  userProfile: any;
+
+  token: any;
 
   // Create a stream of logged in status to communicate throughout app
   loggedIn: boolean;
   loggedIn$ = new BehaviorSubject<boolean>(this.loggedIn);
-  loginUrl = 'http://127.0.0.1:8000/oauth/token';
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router) {
     // If authenticated, set local profile property and update login status subject
     // If token is expired, log out to clear any data from localStorage
-    if (this.authenticated) {
-      this.userProfile = JSON.parse(localStorage.getItem('profile'));
+    if (this.isAuthenticated()) {
+      this.token = JSON.parse(localStorage.getItem('access_token'));
       this.setLoggedIn(true);
     } else {
       this.logout();
@@ -38,65 +30,45 @@ export class AuthService {
   }
 
   login() {
-    this.handleAuth();
+    // Send the user to the authenticaition server
+  //  window.location.href('127.0.0.1:8000/login');
   }
 
-  authorize() {
-
+  public handleAuthentication(): void {
+    // this.auth0.parseHash((err, authResult) => {
+    //   if (authResult && authResult.accessToken && authResult.idToken) {
+    //     window.location.hash = '';
+    //     this.setSession(authResult);
+    //     this.router.navigate(['/']);
+    //   } else if (err) {
+    //     this.router.navigate(['/']);
+    //     console.log(err);
+    //   }
+    // });
   }
 
-  handleAuth() {
-    const code = this.router.routerState.snapshot.root.queryParams.code;
-    const auth = new Authorize(code);
-    const headerData = new HttpHeaders().set('Content-Type', 'application/form-data');
-    const result = this.http.post<Authorize>(this.loginUrl, auth, { headers: headerData}).pipe(
-        catchError(this.handleError<Authorize>('authorize'))
-    ).subscribe(res => console.log(res));
+  private setSession(authResult): void {
+    // Set the time that the Access Token will expire at
+    const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+    localStorage.setItem('access_token', authResult.accessToken);
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('expires_at', expiresAt);
+  }
+
+  public logout(): void {
+    // Remove tokens and expiry time from localStorage
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
+    // Go back to the home route
     this.router.navigate(['/']);
   }
 
-  private _setSession(authResult, profile) {
-    const expTime = authResult.expiresIn * 1000 + Date.now();
-    // Save session data and update login status subject
-    localStorage.setItem('token', authResult.accessToken);
-    localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem('profile', JSON.stringify(profile));
-    localStorage.setItem('expires_at', JSON.stringify(expTime));
-    this.userProfile = profile;
-    this.setLoggedIn(true);
+  public isAuthenticated(): boolean {
+    // Check whether the current time is past the
+    // Access Token's expiry time
+    return true;
+    // const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+    // return new Date().getTime() < expiresAt;
   }
-
-  logout() {
-    // Remove tokens and profile and update login status subject
-    localStorage.removeItem('token');
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('profile');
-    localStorage.removeItem('expires_at');
-    this.userProfile = undefined;
-    this.setLoggedIn(false);
-  }
-
-  get authenticated(): boolean {
-    // Check if current date is greater than expiration
-    const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-    return Date.now() < expiresAt;
-  }
-
-      /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
-  }
-
 }

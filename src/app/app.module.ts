@@ -13,7 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ItemModule } from './item/item.module';
 import { CallbackComponent } from './callback/callback.component';
 import { AuthService } from './auth/auth.service';
-import { WalletModule } from './wallet/wallet.module'; 
+import { WalletModule } from './wallet/wallet.module';
 import { HomeComponent } from './home/home.component';
 import { MyHttpInterceptor } from './my-http-interceptor';
 

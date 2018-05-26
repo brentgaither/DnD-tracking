@@ -1,0 +1,13 @@
+<div class="container" *ngIf="diary">
+
+  <h2>{{ diary.title }}</h2>
+  <div><span>Created: </span>{{diary.created_at}}</div>
+  <div class="form-group">
+    <label>Title:</label>
+      <input class="form-control" [(ngModel)]="diary.title" placeholder="title"/>
+    <label>description:</label>
+        <textarea type="textarea" class="form-control" [(ngModel)]="diary.description" 
+        placeholder="diary description"></textarea> 
+  </div>
+  <button class="btn btn-success" (click)="save();">save</button>
+</div>

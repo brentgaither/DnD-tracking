@@ -15,12 +15,13 @@ import { WalletModule } from './wallet/wallet.module';
 import { AuthService } from './auth/auth.service';
 import { HomeComponent } from './home/home.component';
 import { MyHttpInterceptor } from './my-http-interceptor';
+import { DiaryModule } from './diary/diary.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +32,8 @@ import { MyHttpInterceptor } from './my-http-interceptor';
     //   InMemoryDataService, { dataEncapsulation: false }
     // ),
     ItemModule,
-    WalletModule
+    WalletModule,
+    DiaryModule
   ],
   providers: [AuthService,
   {

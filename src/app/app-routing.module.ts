@@ -8,12 +8,16 @@ import { WalletComponent } from './wallet/wallet/wallet.component';
 import { WalletDetailComponent } from './wallet/wallet-detail/wallet-detail.component';
 import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './home/home.component';
+import { DiaryListComponent } from './diary/diary-list/diary-list.component';
+import { DiaryDetailComponent } from './diary/diary-detail/diary-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, },
   { path: 'dashboard', component: DashboardComponent, },
-  { path: 'detail/:id', component: ItemDetailComponent },
+  { path: 'item/detail/:id', component: ItemDetailComponent },
+  { path: 'diary', component: DiaryListComponent },
+  { path: 'diary/detail/:id', component: DiaryDetailComponent },
   { path: 'items', component: ItemListComponent },
   { path: 'wallet', component: WalletComponent },
   { path: 'wallet/detail', component: WalletDetailComponent},

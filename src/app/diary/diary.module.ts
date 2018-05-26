@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 
 
 import { DiaryDetailComponent } from './diary-detail/diary-detail.component';
@@ -11,8 +10,7 @@ import { DiaryService } from './shared/diary.service';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    HttpClient
+    FormsModule, 
   ],
   declarations: [
     DiaryDetailComponent,

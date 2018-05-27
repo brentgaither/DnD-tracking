@@ -21,6 +21,7 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     authServiceStub = {
       handleAuthentication() {return; },
+      isAuthenticated() {return true; }
     };
     TestBed.configureTestingModule({
       imports: [ FormsModule, RouterModule.forRoot(routes), ],
@@ -36,7 +37,7 @@ describe('AppComponent', () => {
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    authService = fixture.debugElement.injector.get(authService);
+    authService = fixture.debugElement.injector.get(AuthService);
     componentAuthService = authService;
     // WalletService from the root injector
     authService = TestBed.get(AuthService);

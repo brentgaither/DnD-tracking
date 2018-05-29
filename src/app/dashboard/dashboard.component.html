@@ -1,8 +1,24 @@
-<h3>Top Items</h3>
-<div class="grid grid-pad">
-  <a *ngFor="let item of items" class="col-1-4">
-    <div >
-      <h4>{{item.name}}</h4>
-    </div>
-  </a>
-</div>
+<mat-card>
+  <mat-card-header>
+    <h1 class="mat-h1">Dashboard</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-grid-list cols="2" rowHeight="350px">
+      <mat-grid-tile *ngFor="let item of items" [colspan]="1" [rowspan]="1">
+        <mat-card class="dashboard-card">
+          <mat-card-header>
+            <mat-card-title>
+              <h3>{{item.name}}</h3>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content">
+              <label>{{item.description}}</label>
+              <br/>
+              <label>weight:</label>
+              <span>{{item.weight}}</span>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>

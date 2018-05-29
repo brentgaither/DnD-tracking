@@ -24,7 +24,7 @@ export class DiaryListComponent implements OnInit {
 
   getDiaries(): void {
     this.diaryService.getDairies()
-        .subscribe(diaries => {this.diaries = diaries; });
+        .subscribe(diaries => {this.diaries = diaries; this.selectedDiary = this.diaries[0]; });
   }
 
   onSelect(diary: Diary): void {

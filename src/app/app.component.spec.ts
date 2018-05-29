@@ -7,6 +7,9 @@ import { AuthService } from './auth/auth.service';
 import { observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Route, Routes } from '@angular/router';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MatToolbarModule, MatListModule, MatSidenavModule, MatIconModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -24,8 +27,9 @@ describe('AppComponent', () => {
       isAuthenticated() {return true; }
     };
     TestBed.configureTestingModule({
-      imports: [ FormsModule, RouterModule.forRoot(routes), ],
-      declarations: [ AppComponent ],
+      imports: [ FormsModule, RouterModule.forRoot(routes), MatToolbarModule, MatListModule,
+        MatSidenavModule, MatIconModule, BrowserAnimationsModule ],
+      declarations: [ AppComponent, NavbarComponent ],
       providers: [
         {provide: AuthService, useValue: authServiceStub},
         {provide: APP_BASE_HREF, useValue : '/' }

@@ -6,6 +6,7 @@ import { DiaryDetailComponent } from './diary-detail.component';
 import { DiaryService } from '../shared/diary.service';
 import { DiaryListComponent } from '../diary-list/diary-list.component';
 import { Diary } from '../shared/diary.model';
+import { MatCardModule, MatGridListModule, MatIconModule, MatListModule, MatFormFieldModule } from '@angular/material';
 
 describe('DiaryDetailComponent', () => {
   let component: DiaryDetailComponent;
@@ -18,7 +19,8 @@ describe('DiaryDetailComponent', () => {
       addDiary(diary: Diary) {}
     };
     TestBed.configureTestingModule({
-      imports: [ FormsModule, RouterTestingModule ],
+      imports: [ FormsModule, RouterTestingModule, MatCardModule, MatGridListModule,
+         MatIconModule, MatListModule, MatFormFieldModule],
       declarations: [ DiaryListComponent, DiaryDetailComponent ],
       providers: [
         {provide: DiaryService, useValue: diaryServiceStub}

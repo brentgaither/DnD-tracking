@@ -32,7 +32,7 @@ export class ItemListComponent implements OnInit {
 
   getItems(): void {
     this.itemService.getItems()
-        .subscribe(items => {this.items = items; this.calculateWeight(); });
+        .subscribe(items => {this.items = items; this.calculateWeight(); this.selectedItem = items[0]; });
   }
 
   onSelect(item: Item): void {

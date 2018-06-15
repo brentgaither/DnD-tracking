@@ -1,5 +1,9 @@
-<div *ngIf="wallet">
-  <span class="badge badge-gold">{{wallet.gold}}</span>
-  <span class="badge badge-silver">{{wallet.silver}}</span>
-  <span class="badge badge-copper">{{wallet.copper}}</span>
-</div>
+<mat-card *ngIf="wallet">
+  <mat-card-content fxLayout="col">
+      <mat-chip-list class="mat-chip-list-stacked" fxFlex="10">
+        <mat-chip class="badge-gold">{{wallet.gold}}</mat-chip>
+        <mat-chip class="badge-silver">{{wallet.silver}}</mat-chip>
+        <mat-chip class="badge-copper">{{wallet.copper}}</mat-chip>
+      </mat-chip-list>
+  </mat-card-content>
+</mat-card>

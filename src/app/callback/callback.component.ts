@@ -14,7 +14,7 @@ export class CallbackComponent implements OnInit {
   accessToken: string;
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.accessToken = params['code'];
+      this.accessToken = params['token'];
   });
     this.authService.getToken(this.accessToken).subscribe(
       token => {this.authService.setSession(token); }

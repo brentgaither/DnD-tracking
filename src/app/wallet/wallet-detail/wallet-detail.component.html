@@ -1,16 +1,20 @@
-<div class="container" *ngIf="wallet">
-  <app-wallet [wallet]="wallet"></app-wallet>
-  <div class="form-group">
-    <label>Gold:
-      <input type="number" class="form-control" [(ngModel)]="wallet.gold"/>
-    </label>
-    <label>Silver:
-      <input type="number" class="form-control" [(ngModel)]="wallet.silver"/>
-    </label>
-    <label>Copper:
-      <input type="number" class="form-control" [(ngModel)]="wallet.copper"/>
-    </label>
-  </div>
-  <button class="btn btn-success" (click)="save();">save</button>
-</div>
-  
+
+<mat-card *ngIf="wallet">
+    <mat-card-header>
+    <h3>My Wallet</h3>
+    </mat-card-header>
+    <mat-card-content>
+        <form class="item-form">
+          <mat-form-field>
+              <input matInput placeholder="gold" name="gold" [(ngModel)]="wallet.gold">
+          </mat-form-field> 
+          <mat-form-field>
+              <input matInput placeholder="silver" name="silver" [(ngModel)]="wallet.silver">
+          </mat-form-field> 
+          <mat-form-field>
+              <input matInput placeholder="copper" name="copper" [(ngModel)]="wallet.copper"> 
+          </mat-form-field> 
+        </form>
+        <button mat-stroked-button (click)="save();">save</button>
+    </mat-card-content>
+  </mat-card>

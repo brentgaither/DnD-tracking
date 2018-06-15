@@ -8,6 +8,7 @@ import { ItemDetailComponent } from '../item-detail/item-detail.component';
 import { ItemService } from '../shared/item.service';
 import { Item } from '../shared/item.model';
 import { Observable } from 'rxjs/Observable';
+import { MatCardModule, MatListModule, MatIconModule, MatFormFieldModule } from '@angular/material';
 
 describe('ItemListComponent', () => {
   let component: ItemListComponent;
@@ -22,7 +23,7 @@ describe('ItemListComponent', () => {
       addItem(item: Item) {}
     };
     TestBed.configureTestingModule({
-      imports: [ FormsModule, RouterTestingModule ],
+      imports: [ FormsModule, RouterTestingModule, MatCardModule, MatListModule, MatIconModule, MatFormFieldModule ],
       declarations: [ ItemListComponent, ItemDetailComponent ],
       providers: [
         {provide: ItemService, useValue: itemServiceStub}

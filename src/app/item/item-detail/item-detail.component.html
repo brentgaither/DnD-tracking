@@ -1,20 +1,22 @@
-<div class="container" *ngIf="item">
-
-  <h2>{{ item.name }} Details</h2>
-  <div><span>id: </span>{{item.id}}</div>
-  <div class="form-group">
-    <label>name:
-      <input class="form-control" [(ngModel)]="item.name" placeholder="name"/>
-    </label>
-    <label>weight:
-      <input class="form-control" [(ngModel)]="item.weight" placeholder="lbs"/>
-    </label>
-    <label>quantity:
-      <input class="form-control" [(ngModel)]="item.quantity" placeholder="#"/>
-    </label>
-    <label>description:
-        <textarea type="textarea" class="form-control" [(ngModel)]="item.description" placeholder="item description"></textarea>
-      </label>
-  </div>
-  <button class="btn btn-success" (click)="save();">save</button>
-</div>
+<mat-card class="container" *ngIf="item">
+  <mat-card-header>
+  <h3>{{ item.name }} Details</h3>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="item-form">
+      <mat-form-field >
+            <input matInput placeholder="Name" name="name" [(ngModel)]="item.name">
+      </mat-form-field> 
+      <mat-form-field>
+          <input matInput placeholder="Weight" name="weight" [(ngModel)]="item.weight">
+      </mat-form-field>    
+      <mat-form-field>
+          <input matInput placeholder="Quantity" name="quantity" [(ngModel)]="item.quantity">
+      </mat-form-field> 
+      <mat-form-field>
+          <textarea matInput placeholder="Description" name="description" [(ngModel)]="item.description"></textarea>
+      </mat-form-field> 
+    </form>
+    <button mat-stroked-button (click)="save();">save</button>
+  </mat-card-content>
+</mat-card>

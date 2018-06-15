@@ -10,6 +10,7 @@ import 'rxjs/add/observable/of';
 import { ItemDetailComponent } from './item-detail.component';
 import { ItemService } from '../shared/item.service';
 import { Item } from '../shared/item.model';
+import { MatListModule, MatFormFieldModule, MatIconModule, MatButtonModule, MatCardModule } from '@angular/material';
 
 
 
@@ -26,7 +27,7 @@ describe('ItemDetailComponent', () => {
       updateItem(item: Item) {return Observable.of(new Item()); },
     };
     TestBed.configureTestingModule({
-      imports: [ FormsModule, RouterTestingModule ],
+      imports: [ FormsModule, RouterTestingModule, MatListModule, MatFormFieldModule, MatIconModule, MatButtonModule, MatCardModule ],
       declarations: [ ItemDetailComponent ],
       providers: [
         {provide: ItemService, useValue: itemServiceStub}

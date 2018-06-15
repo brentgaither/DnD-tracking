@@ -1,0 +1,16 @@
+<mat-card class="container" *ngIf="diary">
+  <mat-card-header>
+  <h4>{{diary.created_at}}</h4>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="item-form">
+      <mat-form-field >
+            <input matInput [(ngModel)]="diary.title" name="title" placeholder="title">
+      </mat-form-field> 
+      <mat-form-field>
+          <textarea matInput placeholder="Description" name="description" [(ngModel)]="diary.description"></textarea>
+      </mat-form-field> 
+    </form>
+    <button mat-stroked-button (click)="save();">save</button>
+  </mat-card-content>
+</mat-card>

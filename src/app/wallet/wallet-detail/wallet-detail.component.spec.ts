@@ -6,6 +6,8 @@ import { WalletDetailComponent } from './wallet-detail.component';
 import { WalletService } from '../shared/wallet.service';
 import { WalletComponent } from '../wallet/wallet.component';
 import { Wallet } from '../shared/wallet.model';
+import { MatCardModule, MatIconModule, MatFormFieldModule, MatChipsModule, MatButtonModule, MatInputModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 describe('WalletDetailComponent', () => {
@@ -20,7 +22,7 @@ describe('WalletDetailComponent', () => {
       getWallet(id: number) {return Observable.of(new Wallet()); },
     };
     TestBed.configureTestingModule({
-      imports: [FormsModule],
+      imports: [FormsModule, MatCardModule, MatFormFieldModule, MatInputModule, MatChipsModule, MatButtonModule, BrowserAnimationsModule],
       declarations: [ WalletDetailComponent, WalletComponent ],
       providers: [
         {provide: WalletService, useValue: walletServiceStub}

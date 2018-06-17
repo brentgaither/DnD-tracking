@@ -1,15 +1,15 @@
 interface AuthConfig {
     CLIENT_ID: string;
-    CLIENT_SECRET: string;
-    AUDIENCE: string;
     REDIRECT: string;
     SCOPE: string;
+    RESPONSE_TYPE: string;
+    AUTHENTICATION_SERVER: string;
   }
 
   export const AUTH_CONFIG: AuthConfig = {
     CLIENT_ID: '1',
-    CLIENT_SECRET: 'h66OoiATZDbE0x9iVpBV4G3KV44qHn5231v9XYlr', // e.g., you.auth0.com
-    AUDIENCE: 'http://localhost:3001',
     REDIRECT: 'http://localhost:4200/callback',
-    SCOPE: ''
+    SCOPE: '',
+    RESPONSE_TYPE: 'token',
+    AUTHENTICATION_SERVER: 'http://127.0.0.1:8000/oauth/authorize'
   };

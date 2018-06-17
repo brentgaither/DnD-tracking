@@ -11,6 +11,6 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent {
   title = 'D&D tracking';
   constructor(public auth: AuthService) {
-    auth.handleAuthentication();
+    auth.tryLogin();
   }
 }

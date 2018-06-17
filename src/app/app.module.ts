@@ -9,7 +9,7 @@ import { Http, RequestOptions } from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatRippleModule, MatCard,
   MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule,
-  MatMenuModule, MatInputModule, MatFormFieldModule} from '@angular/material';
+  MatMenuModule, MatInputModule, MatFormFieldModule, MatProgressSpinnerModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LayoutModule } from '@angular/cdk/layout';
 
@@ -25,14 +25,13 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AuthService } from './auth/auth.service';
 import { CallbackComponent } from './callback/callback.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     CallbackComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +58,7 @@ import { CallbackComponent } from './callback/callback.component';
     MatMenuModule,
     MatInputModule,
     MatFormFieldModule,
+    MatProgressSpinnerModule,
     FlexLayoutModule
   ],
   providers: [AuthService,

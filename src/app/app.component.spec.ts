@@ -23,7 +23,6 @@ describe('AppComponent', () => {
 
   beforeEach(async(() => {
     authServiceStub = {
-      handleAuthentication() {return; },
       isAuthenticated() {return true; }
     };
     TestBed.configureTestingModule({

@@ -1,7 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AUTH_CONFIG } from './auth-config';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { AuthResult } from './authResult.model';
 
 @Injectable()
 export class AuthService {
@@ -11,47 +14,29 @@ export class AuthService {
   // Create a stream of logged in status to communicate throughout app
   loggedIn: boolean;
   loggedIn$ = new BehaviorSubject<boolean>(this.loggedIn);
+  private authUrl = 'oauth/token';
 
-  constructor(private router: Router) {
-    // If authenticated, set local profile property and update login status subject
-    // If token is expired, log out to clear any data from localStorage
-    if (this.isAuthenticated()) {
-      this.token = JSON.parse(localStorage.getItem('access_token'));
-      this.setLoggedIn(true);
-    } else {
-      this.logout();
+  constructor(private router: Router, private http: HttpClient) {  }
+
+  getToken (): string {
+    return localStorage.getItem('access_token');
+  }
+
+  public tryLogin() {
+    if (!this.isAuthenticated()) {
+       // Send the user to the authenticaition server
+        location.href = encodeURI(AUTH_CONFIG.AUTHENTICATION_SERVER + '?' + 'client_id=' + AUTH_CONFIG.CLIENT_ID
+        + '&redirect_uri=' + AUTH_CONFIG.REDIRECT + '&response_type=' + AUTH_CONFIG.RESPONSE_TYPE);
     }
   }
 
-  setLoggedIn(value: boolean) {
-    // Update login status subject
-    this.loggedIn$.next(value);
-    this.loggedIn = value;
-  }
 
-  login() {
-    // Send the user to the authenticaition server
-  //  window.location.href('127.0.0.1:8000/login');
-  }
-
-  public handleAuthentication(): void {
-    // this.auth0.parseHash((err, authResult) => {
-    //   if (authResult && authResult.accessToken && authResult.idToken) {
-    //     window.location.hash = '';
-    //     this.setSession(authResult);
-    //     this.router.navigate(['/']);
-    //   } else if (err) {
-    //     this.router.navigate(['/']);
-    //     console.log(err);
-    //   }
-    // });
-  }
-
-  private setSession(authResult): void {
+  public setSession(urlFragment): void {
+    const authResult = this.parseQueryString(urlFragment);
     // Set the time that the Access Token will expire at
-    const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-    localStorage.setItem('access_token', authResult.accessToken);
-    localStorage.setItem('id_token', authResult.idToken);
+    const expiresAt = JSON.stringify((authResult.expires_in * 1000) + new Date().getTime());
+    localStorage.setItem('access_token', authResult.access_token);
+    localStorage.setItem('token_type', authResult.token_type);
     localStorage.setItem('expires_at', expiresAt);
   }
 
@@ -67,8 +52,24 @@ export class AuthService {
   public isAuthenticated(): boolean {
     // Check whether the current time is past the
     // Access Token's expiry time
-    return true;
-    // const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-    // return new Date().getTime() < expiresAt;
+    const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+    return new Date().getTime() < expiresAt;
+  }
+
+  private parseQueryString ( queryString ): AuthResult {
+    const params = {};
+    let queries, temp, i, l;
+    // Split into key/value pairs
+    queries = queryString.split('&');
+    // Convert the array of strings into an object
+    for ( i = 0, l = queries.length; i < l; i++ ) {
+        temp = queries[i].split('=');
+        params[temp[0]] = temp[1];
+    }
+    const authResult = new AuthResult();
+    authResult.access_token =  params['access_token'];
+    authResult.expires_in =  params['expires_in'];
+    authResult.token_type =  params['token_type'];
+    return authResult;
   }
 }

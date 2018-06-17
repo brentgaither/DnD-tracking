@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ItemListComponent } from './item/item-list/item-list.component';
 import { ItemDetailComponent } from './item/item-detail/item-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CallbackComponent } from './callback/callback.component';
 import { WalletComponent } from './wallet/wallet/wallet.component';
 import { WalletDetailComponent } from './wallet/wallet-detail/wallet-detail.component';
 import { AuthGuard } from './auth/auth.guard';
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'diary', component: DiaryListComponent },
   { path: 'diary/detail/:id', component: DiaryDetailComponent },
   { path: 'items', component: ItemListComponent },
+  { path: 'callback', component: CallbackComponent },
   { path: 'wallet', component: WalletComponent },
   { path: 'wallet/detail', component: WalletDetailComponent},
 ];

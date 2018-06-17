@@ -14,13 +14,32 @@
   <mat-sidenav-content>
     <mat-toolbar color="primary">
       <button
-        type="button"
+        [disabled]="!this.authenticated()"
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span style="margin: 10px"> D and D tracking</span>
+      <button mat-button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon aria-label="Side nav toggle icon">settings</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+      <button
+        *ngIf="this.authenticated()"
+        mat-menu-item
+        aria-label="Logout"
+        (click)="logout()">
+        Log out
+      </button>
+      <button
+        *ngIf="!this.authenticated()"
+        mat-menu-item
+        aria-label="Login"
+        (click)="login()">
+        Sign in
+      </button>
+      </mat-menu>  
     </mat-toolbar>
   </mat-sidenav-content>
 </mat-sidenav-container>

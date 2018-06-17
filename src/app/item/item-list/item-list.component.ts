@@ -42,7 +42,7 @@ export class ItemListComponent implements OnInit {
   add(name: string): void {
     name = name.trim();
     if (!name) { return; }
-    const item = { name: name, weight: 0, quantity: 0, description: 'add a description' } as Item;
+    const item = { name: name, weight: 0, quantity: 0, description: '' } as Item;
     this.itemService.addItem(item)
       .subscribe(newItem => {
         this.items.push(newItem); this.calculateWeight();

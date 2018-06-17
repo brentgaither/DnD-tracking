@@ -10,6 +10,7 @@ import { RouterModule, Route, Routes } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatToolbarModule, MatListModule, MatSidenavModule, MatIconModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -23,11 +24,11 @@ describe('AppComponent', () => {
 
   beforeEach(async(() => {
     authServiceStub = {
-      isAuthenticated() {return true; }
+      isAuthenticated() {return true; },
+      tryLogin() {return; }
     };
     TestBed.configureTestingModule({
-      imports: [ FormsModule, RouterModule.forRoot(routes), MatToolbarModule, MatListModule,
-        MatSidenavModule, MatIconModule, BrowserAnimationsModule ],
+      imports: [ FormsModule, RouterModule.forRoot(routes), MaterialModule, BrowserAnimationsModule ],
       declarations: [ AppComponent, NavbarComponent ],
       providers: [
         {provide: AuthService, useValue: authServiceStub},
@@ -49,8 +50,8 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-  it(`should have as title 'D&D tracking'`, async(() => {
+  it(`should have as title 'D and D tracking'`, async(() => {
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('D&D tracking');
+    expect(app.title).toEqual('D and D tracking');
   }));
 });

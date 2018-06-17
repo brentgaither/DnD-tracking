@@ -7,19 +7,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { DiaryDetailComponent } from './diary-detail/diary-detail.component';
 import { DiaryListComponent } from './diary-list/diary-list.component';
 import { DiaryService } from './shared/diary.service';
-import { MatFormFieldModule, MatInputModule, MatCardModule, MatIconModule, MatListModule, MatButtonModule } from '@angular/material';
+import { MaterialModule } from '../material/material.module';
 
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCardModule,
-    MatIconModule,
-    MatListModule,
-    MatButtonModule,
+    MaterialModule,
     FlexLayoutModule
   ],
   declarations: [

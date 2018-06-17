@@ -7,9 +7,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { Http, RequestOptions } from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatRippleModule, MatCard,
-  MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule, MatCardModule,
-  MatMenuModule, MatInputModule, MatFormFieldModule, MatProgressSpinnerModule} from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LayoutModule } from '@angular/cdk/layout';
 
@@ -24,6 +21,7 @@ import { MyHttpInterceptor } from './my-http-interceptor';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthService } from './auth/auth.service';
 import { CallbackComponent } from './callback/callback.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -39,9 +37,6 @@ import { CallbackComponent } from './callback/callback.component';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatRippleModule,
     // HttpClientInMemoryWebApiModule.forRoot(
     //   InMemoryDataService, { dataEncapsulation: false }
     // ),
@@ -49,16 +44,7 @@ import { CallbackComponent } from './callback/callback.component';
     WalletModule,
     DiaryModule,
     LayoutModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatProgressSpinnerModule,
+    MaterialModule,
     FlexLayoutModule
   ],
   providers: [AuthService,

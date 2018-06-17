@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { WalletComponent } from './wallet.component';
 import { WalletService } from '../shared/wallet.service';
 import { Wallet } from '../shared/wallet.model';
-import { MatIconModule, MatListModule, MatCardModule, MatChipsModule } from '@angular/material';
+import { MaterialModule } from '../../material/material.module';
 
 describe('WalletComponent', () => {
   let component: WalletComponent;
@@ -19,7 +19,7 @@ describe('WalletComponent', () => {
       getWallet(id: number) {return Observable.of(new Wallet()); },
     };
     TestBed.configureTestingModule({
-      imports: [ FormsModule, MatIconModule, MatListModule, MatCardModule, MatChipsModule ],
+      imports: [ FormsModule, MaterialModule ],
       declarations: [ WalletComponent ],
       providers: [
         {provide: WalletService, useValue: walletServiceStub}

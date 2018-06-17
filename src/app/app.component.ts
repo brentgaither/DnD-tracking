@@ -9,7 +9,7 @@ import { AuthService } from './auth/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'D&D tracking';
+  title = 'D and D tracking';
   constructor(public auth: AuthService) {
     auth.tryLogin();
   }

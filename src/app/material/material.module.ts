@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatToolbarModule, MatSidenavModule, MatIconModule,
   MatListModule, MatGridListModule, MatCardModule, MatMenuModule,
    MatInputModule, MatFormFieldModule, MatProgressSpinnerModule, MatRippleModule,
-    MatCheckboxModule, MatButtonModule, MatChipsModule } from '@angular/material';
+    MatCheckboxModule, MatButtonModule, MatChipsModule, MatOptionModule, MatSelectModule, MatAutocompleteModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -21,6 +21,9 @@ import { MatToolbarModule, MatSidenavModule, MatIconModule,
     MatInputModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatAutocompleteModule
   ],
   exports: [
     CommonModule,
@@ -37,7 +40,10 @@ import { MatToolbarModule, MatSidenavModule, MatIconModule,
     MatInputModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
-    MatChipsModule
+    MatChipsModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatAutocompleteModule
   ],
   declarations: []
 })

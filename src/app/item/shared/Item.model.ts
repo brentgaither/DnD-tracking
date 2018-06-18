@@ -3,5 +3,6 @@ export class Item {
     name: string;
     description: string;
     weight: number;
-    quantity: number;
+    cost: number;
+    currency: string;
   }

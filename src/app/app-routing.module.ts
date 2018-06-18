@@ -11,6 +11,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { DiaryListComponent } from './diary/diary-list/diary-list.component';
 import { DiaryDetailComponent } from './diary/diary-detail/diary-detail.component';
+import { UserItemComponent } from './item/user-item/user-item.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'diary', component: DiaryListComponent },
   { path: 'diary/detail/:id', component: DiaryDetailComponent },
   { path: 'items', component: ItemListComponent },
+  { path: 'myItems', component: UserItemComponent },
   { path: 'callback', component: CallbackComponent },
   { path: 'wallet', component: WalletComponent },
   { path: 'wallet/detail', component: WalletDetailComponent},

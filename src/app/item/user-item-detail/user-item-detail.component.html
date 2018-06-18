@@ -1,0 +1,16 @@
+<mat-card class="container" *ngIf="userItem">
+  <mat-card-header>
+  <h3>{{ userItem.item.name }}</h3>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="item-form">
+      <mat-form-field>
+          <input matInput placeholder="Quantity" name="quantity" [(ngModel)]="userItem.quantity">
+      </mat-form-field> 
+      <p>{{userItem.item.description}}</p>
+      <p>Weight: {{userItem.item.weight}}</p>
+      <p>Cost: {{userItem.item.cost}}  {{userItem.item.currency}} </p>
+    </form>
+    <button mat-stroked-button (click)="save();">save</button>
+  </mat-card-content>
+</mat-card> 

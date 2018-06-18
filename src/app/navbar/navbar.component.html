@@ -6,7 +6,8 @@
     [attr.role]="'navigation'">
     <mat-toolbar (click)="drawer.toggle()" color="primary">Menu</mat-toolbar>
     <mat-nav-list>
-      <a (click)="drawer.toggle()" mat-list-item routerLink="/items">Items</a>
+      <a (click)="drawer.toggle()" mat-list-item routerLink="/myItems">My Items</a>
+      <a (click)="drawer.toggle()" mat-list-item routerLink="/items">All Items</a>
       <a (click)="drawer.toggle()" mat-list-item routerLink="/wallet/detail">Wallet</a>
       <a (click)="drawer.toggle()" mat-list-item routerLink="/diary">Diary</a>
     </mat-nav-list>

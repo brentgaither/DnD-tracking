@@ -11,6 +11,7 @@ import { ItemDetailComponent } from './item-detail.component';
 import { ItemService } from '../shared/item.service';
 import { Item } from '../shared/item.model';
 import { MatListModule, MatFormFieldModule, MatIconModule, MatButtonModule, MatCardModule } from '@angular/material';
+import { MaterialModule } from '../../material/material.module';
 
 
 
@@ -27,7 +28,7 @@ describe('ItemDetailComponent', () => {
       updateItem(item: Item) {return Observable.of(new Item()); },
     };
     TestBed.configureTestingModule({
-      imports: [ FormsModule, RouterTestingModule, MatListModule, MatFormFieldModule, MatIconModule, MatButtonModule, MatCardModule ],
+      imports: [ FormsModule, RouterTestingModule, MaterialModule ],
       declarations: [ ItemDetailComponent ],
       providers: [
         {provide: ItemService, useValue: itemServiceStub}

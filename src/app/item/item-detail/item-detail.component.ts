@@ -21,6 +21,11 @@ export class ItemDetailComponent implements OnInit {
 
   @Input() item: Item;
   @Output() saveItem = new EventEmitter<boolean>();
+  currencies = [
+    {value: 'gp'},
+    {value: 'sp'},
+    {value: 'cp'}
+  ];
 
   ngOnInit() {
   }

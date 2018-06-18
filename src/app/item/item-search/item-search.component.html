@@ -1,0 +1,10 @@
+<div id="search-component">
+    <h4>Item Search</h4>
+    <mat-form-field>
+        <input [(ngModel)]="selectedValue" placeholder="Search Item" type="text" matInput [matAutocomplete]="auto"
+        #searchBox id="search-box" (keyup)="search(searchBox.value)">
+        <mat-autocomplete (optionSelected)="itemSelectedEvent(this.selectedValue)" #auto="matAutocomplete">
+            <mat-option *ngFor="let item of items$ | async" [value]="item.name">{{item.name}}</mat-option>
+          </mat-autocomplete>
+    </mat-form-field>
+  </div>

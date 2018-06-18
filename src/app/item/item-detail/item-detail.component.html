@@ -11,8 +11,15 @@
           <input matInput placeholder="Weight" name="weight" [(ngModel)]="item.weight">
       </mat-form-field>    
       <mat-form-field>
-          <input matInput placeholder="Quantity" name="quantity" [(ngModel)]="item.quantity">
+          <input matInput placeholder="cost" name="cost" [(ngModel)]="item.cost">
       </mat-form-field> 
+      <mat-form-field>
+          <mat-select [(ngModel)]="item.currency" name="currency" placeholder="currency">
+            <mat-option *ngFor="let currency of currencies" [value]="currency.value">
+              {{ currency.value }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       <mat-form-field>
           <textarea matInput placeholder="Description" name="description" [(ngModel)]="item.description"></textarea>
       </mat-form-field> 

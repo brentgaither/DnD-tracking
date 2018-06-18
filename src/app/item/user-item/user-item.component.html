@@ -4,13 +4,13 @@
       </mat-card-header>
     <mat-card-content fxLayout="row">
       <mat-nav-list fxFlex="33">
-        <mat-list-item class="list-group-item" *ngFor="let item of items"
-          [class.bg-info]="item === selectedItem"
-          (click)="onSelect(item)">
-          {{item.name}}
+        <mat-list-item class="list-group-item" *ngFor="let userItem of userItems"
+          [class.bg-info]="userItem === selectedUserItem"
+          (click)="onSelect(userItem)">
+          {{userItem.item.name}}
           <span class="fill-space"></span>
           <button mat-button color="warn" title="delete"
-            (click)="delete(item)">
+            (click)="delete(userItem)">
             <mat-icon>delete</mat-icon>
           </button>
         </mat-list-item>
@@ -18,13 +18,9 @@
     <mat-card fxFlex="33">
       <mat-card-header>{{weight}} lbs</mat-card-header>
       <mat-card-content>
-          <mat-form-field>
-              <input matInput placeholder="Name" #itemName>
-          </mat-form-field> 
-          <button mat-button class="btn btn-success" (click)="add(itemName.value); itemName.value=''">
-            add</button>
+          <app-item-search (selectedItem)="itemSelected($event)"></app-item-search>
       </mat-card-content>
     </mat-card>
-    <app-item-detail fxFlex="33" [item]="selectedItem"></app-item-detail>
+    <app-user-item-detail fxFlex="33" (savedItem)="itemSaved($event)" [userItem]="selectedUserItem"></app-user-item-detail>
   </mat-card-content>
 </mat-card>

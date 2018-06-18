@@ -45,15 +45,4 @@ describe('ItemListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should calculate weight', () => {
-
-    component.items = [
-      { id: 11, name: 'Abacus', description: 'For counting of course!', weight: 10, quantity: 1 },
-      { id: 12, name: 'Backpack', description: 'To hold all your things!', weight: 1, quantity: 7 },
-      { id: 13, name: 'Candle', description: 'Its always nice to see', weight: .25, quantity: 4 },
-    ];
-    component.calculateWeight();
-    expect(component.weight).toEqual(18);
-  });
 });

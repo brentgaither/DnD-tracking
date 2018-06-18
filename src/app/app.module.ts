@@ -10,7 +10,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LayoutModule } from '@angular/cdk/layout';
 
-
 import { AppRoutingModule } from './/app-routing.module';
 import { DiaryModule } from './diary/diary.module';
 import { ItemModule } from './item/item.module';

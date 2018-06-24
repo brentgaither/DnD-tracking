@@ -12,7 +12,7 @@ export class WalletService {
   constructor(private http: HttpClient) { }
 
     /** GET Wallet by logged in user. Will 404 if id not found */
-    getWallet(id: number): Observable<Wallet> {
+    getWallet(): Observable<Wallet> {
       const url = `${this.walletsUrl}/user`;
       return this.http.get<Wallet>(url).pipe(
         catchError(this.handleError<Wallet>(`getWallet`))

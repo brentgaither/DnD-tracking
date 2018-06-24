@@ -5,4 +5,4 @@ export class Item {
     weight: number;
     cost: number;
     currency: string;
-  }
+}

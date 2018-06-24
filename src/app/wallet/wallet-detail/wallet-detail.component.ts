@@ -18,7 +18,7 @@ export class WalletDetailComponent implements OnInit {
   }
 
   getWallet(): void {
-    this.walletService.getWallet(1) // Fake id until i create a login
+    this.walletService.getWallet()
         .subscribe(wallet => this.wallet = wallet );
   }
 

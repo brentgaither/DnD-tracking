@@ -1,22 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MatCardModule, MatFormFieldModule, MatInputModule, MatChipsModule, MatButtonModule } from '@angular/material';
 
 import { WalletComponent } from './wallet/wallet.component';
 import { WalletService } from './shared/wallet.service';
 import { WalletDetailComponent } from './wallet-detail/wallet-detail.component';
+import { MaterialModule } from '../material/material.module';
 
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatChipsModule,
-    MatButtonModule
+    MaterialModule
   ],
   declarations: [WalletComponent, WalletDetailComponent],
   providers: [WalletService]

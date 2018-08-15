@@ -1,0 +1,19 @@
+<mat-card *ngIf="character">
+  <mat-card-header>
+  <h3 ng-bind="character.name"></h3>
+  </mat-card-header>
+  <mat-card-content>
+      <form class="item-form">
+        <mat-form-field>
+            <input matInput placeholder="name" name="name" [(ngModel)]="character.name">
+        </mat-form-field> 
+        <mat-form-field>
+            <input matInput placeholder="Armour Class" name="armourClass" [(ngModel)]="character.armourClass">
+        </mat-form-field> 
+        <mat-form-field>
+            <input matInput placeholder="Hit Points" name="hitPoints" [(ngModel)]="character.hitPoints"> 
+        </mat-form-field> 
+      </form>
+      <button mat-stroked-button (click)="save();">save</button>
+  </mat-card-content>
+</mat-card>

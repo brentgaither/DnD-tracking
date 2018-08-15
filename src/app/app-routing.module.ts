@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { DiaryListComponent } from './diary/diary-list/diary-list.component';
 import { DiaryDetailComponent } from './diary/diary-detail/diary-detail.component';
 import { UserItemComponent } from './item/user-item/user-item.component';
+import { CharacterEditComponent } from './character/character-edit/character-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'callback', component: CallbackComponent },
   { path: 'wallet', component: WalletComponent },
   { path: 'wallet/detail', component: WalletDetailComponent},
+  { path: 'characters/:id', component: CharacterEditComponent},
 ];
 
 @NgModule({

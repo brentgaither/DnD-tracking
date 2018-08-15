@@ -5,12 +5,11 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { Http, RequestOptions } from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LayoutModule } from '@angular/cdk/layout';
 
-import { AppRoutingModule } from './/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { DiaryModule } from './diary/diary.module';
 import { ItemModule } from './item/item.module';
 import { WalletModule } from './wallet/wallet.module';
@@ -21,6 +20,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AuthService } from './auth/auth.service';
 import { CallbackComponent } from './callback/callback.component';
 import { MaterialModule } from './material/material.module';
+import { CharacterModule } from './character/character.module';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,8 @@ import { MaterialModule } from './material/material.module';
     DiaryModule,
     LayoutModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    CharacterModule
   ],
   providers: [AuthService,
   {

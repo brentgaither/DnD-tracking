@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { AuthResult } from './authResult.model';
+import { User } from './user.model';
 
 @Injectable()
 export class AuthService {
@@ -13,6 +14,7 @@ export class AuthService {
 
   // Create a stream of logged in status to communicate throughout app
   loggedIn: boolean;
+  user: User;
   loggedIn$ = new BehaviorSubject<boolean>(this.loggedIn);
   private authUrl = 'oauth/token';
 
@@ -28,6 +30,7 @@ export class AuthService {
         location.href = encodeURI(AUTH_CONFIG.AUTHENTICATION_SERVER + '?' + 'client_id=' + AUTH_CONFIG.CLIENT_ID
         + '&redirect_uri=' + AUTH_CONFIG.REDIRECT + '&response_type=' + AUTH_CONFIG.RESPONSE_TYPE);
     }
+    this.currentUser();
   }
 
 
@@ -54,6 +57,14 @@ export class AuthService {
     // Access Token's expiry time
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
+  }
+
+  public currentUser(): User {
+    if (this.user) {
+      return this.user;
+    }
+    this.http.get<User>('/api/user').pipe().subscribe(user => this.user = user);
+    return this.user;
   }
 
   private parseQueryString ( queryString ): AuthResult {

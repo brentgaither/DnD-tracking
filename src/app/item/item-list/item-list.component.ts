@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
-import { Item } from '..//shared/item.model';
+import { Item } from '../shared/item.model';
 import { ItemService } from '../shared/item.service';
 
 

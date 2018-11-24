@@ -2,6 +2,9 @@ export class Character {
     id: number;
     userId: number;
     name: string;
-    hitPoints: number;
-    armourClass: number;
+    hit_points: number;
+    armour_class: number;
+    intelligence: number;
+    wisdom: number;
+    strength: number;
 }

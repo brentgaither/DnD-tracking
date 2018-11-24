@@ -8,10 +8,19 @@
             <input matInput placeholder="name" name="name" [(ngModel)]="character.name">
         </mat-form-field> 
         <mat-form-field>
-            <input matInput placeholder="Armour Class" name="armourClass" [(ngModel)]="character.armourClass">
+            <input matInput placeholder="Armour Class" name="armour_class" [(ngModel)]="character.armour_class">
         </mat-form-field> 
         <mat-form-field>
-            <input matInput placeholder="Hit Points" name="hitPoints" [(ngModel)]="character.hitPoints"> 
+            <input matInput placeholder="Hit Points" name="hit_points" [(ngModel)]="character.hit_points"> 
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Intelligence" name="intelligence" [(ngModel)]="character.intelligence"> 
+        </mat-form-field> 
+        <mat-form-field>
+            <input matInput placeholder="Strength" name="strength" [(ngModel)]="character.strength"> 
+        </mat-form-field> 
+        <mat-form-field>
+            <input matInput placeholder="Wisdom" name="wisdom" [(ngModel)]="character.wisdom"> 
         </mat-form-field> 
       </form>
       <button mat-stroked-button (click)="save();">save</button>
